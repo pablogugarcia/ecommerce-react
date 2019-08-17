@@ -1,16 +1,52 @@
 import React from 'react';
-
-import CustomButton from '../custom-button/custom-button.component';
-
 import './cart-dropdown.style.scss';
 
-const CartDropdown = () => (
+import CustomButton from '../custom-button/custom-button.component';
+import CartItem from '../cart-item/cart-item.component';
 
-    <div className='cart-dropdown'>
-        <div className='cart-item'></div>
-        <CustomButton inverted > Ir al checkout</CustomButton>
-    </div>
-)
+import { withRouter } from 'react-router-dom';
+
+import { selectCartItems } from '../../redux/cart/cart.selector';
+import { createStructuredSelector } from 'reselect';
+import { connect } from 'react-redux';
+import { toggleCartHidden } from '../../redux/cart/cart.actions';
 
 
-export default CartDropdown;
+const CartDropdown = ({ cartItems, history, dispatch }) => {
+
+
+    const renderCartitems = () => {
+        return cartItems.length ?
+            cartItems.map(item => (<CartItem key={item.id} item={item} />))
+            :
+            (<span className='empty-menssage'> Tu carrito esta vacio </span>);
+    }
+
+    const goCheckoutButton = () => {
+        history.push('/checkout');
+        dispatch(toggleCartHidden());
+    }
+
+    return (
+        <div className='cart-dropdown'>
+            <div className='cart-items'>
+                {
+                    renderCartitems()
+                }
+            </div>
+            <CustomButton inverted onClick={goCheckoutButton} > Ir al checkout</CustomButton>
+        </div>
+    );
+}
+
+
+/* const mapStateToProps = ({ cart: {cartItems} }) => ({
+    cartItems
+})     cambiamos este codigo para utilizar el reselect que creamos en cart Selectors  */
+
+
+const mapStateToProps = createStructuredSelector({
+    cartItems: selectCartItems
+});
+
+export default withRouter(connect(mapStateToProps)(CartDropdown));

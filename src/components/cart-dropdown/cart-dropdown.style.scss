@@ -8,20 +8,38 @@
     border: 1px solid black;
     background-color: #fff;
     top: 80px;
-    right: 70px;;
+    right: 70px;
     z-index: 5;
 
     .cart-items {
         height: 240px;
         display: flex;
         flex-direction: column;
-        overflow: scroll;
+        overflow-y: scroll;
     }
-    
+    ::-webkit-scrollbar {
+        width: 5px;
+      }
+    ::-webkit-scrollbar-track {
+        background: #fff; 
+      }
+       
+      /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background:rgb(57, 56, 75); 
+      }
+      
+      /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: grey; 
+      }
     button {
         margin-top: auto;
     }
     
-
+    .empty-menssage {
+      font-size: auto;
+      margin: 50px auto;
+    }
 
 }
