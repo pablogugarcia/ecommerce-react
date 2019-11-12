@@ -1,7 +1,8 @@
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
-import {claveFirebase} from './claves.firebase';
+// import {claveFirebase} from './claves.firebase';
+import { claveFirebase } from './clave.firebase';
 
 // const config = claveFirebase;
 
