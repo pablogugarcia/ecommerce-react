@@ -23,7 +23,8 @@ import Header from './components/header/header.component';
 // action de redux
 import { setCurrentUser } from './redux/user/user.actions';
 // firebase
-import { auth, createUserProfileDocument } from './firebase/firebase.utils';
+import { auth, createUserProfileDocument, addCollectionsAndDocuments } from './firebase/firebase.utils';
+import { selectCollectionForPreview } from './redux/shop/shop.selector';
 
 class App extends React.Component {
 
@@ -39,7 +40,7 @@ class App extends React.Component {
 
 
   componentDidMount() {
-    const { setCurrentUser } = this.props;
+    const { setCurrentUser  } = this.props;
     
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
       if (userAuth) {
@@ -55,7 +56,6 @@ class App extends React.Component {
         });
       }
       setCurrentUser(userAuth);
-
 
     });
   }
