@@ -24,3 +24,5 @@ yarn-error.log*
 
 # Claves
 src/firebase/claves.firebase.js
+
+src/firebase/clave.firebase.js
